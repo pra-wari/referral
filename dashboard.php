@@ -11,26 +11,40 @@
          </style>
     </head>
     <?php
-    $sql = "SELECT * FROM users";
+    if(isset($_POST["login"]))
+{
+    $email = $_POST["email"];
+    $givenpassword = $_POST["password"];
+    $givenpassword = md5($givenpassword);
+    
+    $sql = "SELECT * FROM users WHERE email = '$email'";
     $result = mysqli_query($link,$sql);
-        
-    echo '<table class="table table-stripped">
-    <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>code</th>
-    </tr>';
-    while($row=mysqli_fetch_assoc($result)){
+    $row=mysqli_fetch_assoc($result);
+    $password = $row["password"];
+    if($givenpassword==$password){
         $link= $row['code'];
-        $name = $row['name'];
-      echo "<tr><td>".$row['name']."</td>
+        echo "<table class='table table-stripped'>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>code</th>
+    </tr>
+    <tr>
+      <td>".$row['name']."</td>
       <td>".$row['email']."</td>
       <td>".$link."
       <button class='btn btn-secondary btn-sm' onclick=copy('$link')>copy</button>
       </td>
-      </tr>";
+    </tr>
+    </table>";
+
+    }else{
+        echo '<div class="alert alert-warning">Password did not match.</div>';
     }
-    echo '</table>';
+        
+}else{
+    echo '<div class="alert alert-danger">Please login.</div>';
+}
     ?>
     <script>
         function copy(str){

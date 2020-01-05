@@ -1,7 +1,7 @@
 <?php include 'database_connect.php'?>
 <html>
     <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-         <title>Contact Form</title>
+         <title>SignUP</title>
          <meta name="viewport" content="width=device-width,initial-scale=1">
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -18,11 +18,19 @@
     <body>
         
        <?php
-      
+              if(isset($_GET["code"])){
+                $referral = $_GET["code"];
+            }else{
+                $referral="";
+            }
+            function random_strings() 
+            { 
+              $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
+              return substr(str_shuffle($str_result), 0, 10); 
+            }
 
        if(isset($_POST["signup"])){
-        
-        $referral = $_GET["code"];
+       
         
           $name = $_POST["name"];
            
@@ -61,11 +69,7 @@
                    $error .= $invalidEmail;
                }
            }
-           function random_strings() 
-           { 
-             $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
-             return substr(str_shuffle($str_result), 0, 10); 
-           }
+          
            $code = random_strings();
           
            if($error){
@@ -73,22 +77,11 @@
          echo $result;
      }else{
             
-           
-            $name = mysqli_real_escape_string($link, $name);
-            
-            $email = mysqli_real_escape_string($link, $email);
-            
-            
-            
-            if(!$referral){
-                $sql = "INSERT INTO users(name,email,password,code)
-                 values('$name','$email','$password','$code')";
-            }else{
                 $sql = "INSERT INTO users(name,email,password,code,referral) 
                 values('$name','$email','$password','$code','$referral')";
                 $sql1 = "UPDATE users SET count= count+1 Where code = '$referral'";
                 mysqli_query($link, $sql1);
-            }
+            
             if(mysqli_query($link, $sql)){
                 echo '<div class="alert alert-success">Thanks'
                 . ' for signup.</div>';

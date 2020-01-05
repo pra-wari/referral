@@ -54,7 +54,7 @@
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            window.alert("text copied");
+            window.alert("code copied");
         }
     </script>
     </html>

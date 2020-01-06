@@ -17,8 +17,9 @@
          </style>
     </head>
     <?php
-    
-    ?>
+session_start();
+$_SESSION["id"]=0;
+?>
     <div class="fluid-container contain col-sm-offet-1 col-sm-6">
     <form method="post" action="dashboard.php">
     <div class="form-group">

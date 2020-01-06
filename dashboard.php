@@ -74,7 +74,7 @@
        
 
         function logout(){
-         document.write("<?php $_SESSION["id"]=0 ?>");
+         window.location="login.php";
    }
     </script>
  

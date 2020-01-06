@@ -28,6 +28,11 @@
               $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'; 
               return substr(str_shuffle($str_result), 0, 10); 
             }
+            
+            if(isset($_POST["login"])){
+                header("Location:login.php");
+            //   echo '<script>window.location="login.php"</script>';
+            }
 
        if(isset($_POST["signup"])){
        
@@ -116,7 +121,10 @@
             
             
             <input type="submit" name="signup" value="SignUP" 
-                   class="btn btn-success btn-lg" id="signup">
+                   class="btn btn-success" id="signup">
+                    
+            <input type="submit" name="login" value="Login" 
+                   class="btn btn-success" id="login">
             
             </form>
         </div>

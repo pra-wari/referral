@@ -18,7 +18,6 @@
     </head>
     <?php
     
-    
     ?>
     <div class="fluid-container contain col-sm-offet-1 col-sm-6">
     <form method="post" action="dashboard.php">

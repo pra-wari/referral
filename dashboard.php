@@ -7,6 +7,7 @@
          <meta name="viewport" content="width=device-width,initial-scale=1">
          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+         <script src="https://cdn.jsdelivr.net/npm/sharer.js@latest/sharer.min.js"></script>
          <style>
             
          </style>
@@ -62,6 +63,18 @@
     ';
     echo '<button class="btn btn-secondary" id="edit"  onclick=edit('.$id.')>
         Edit Profile</button>';
+        echo "<button class='btn btn-primary' data-sharer='facebook'
+         data-width='800' data-height='600' data-title='share on facebook'
+         data-url='http://www.buzz4tech.offyoucode.co.uk/signup.php?code=$link'>
+         share on facebook</button>";
+         echo "<button class='btn btn-primary' data-sharer='twitter'
+         data-width='800' data-height='600' data-title='share on twitter'
+         data-url='http://www.buzz4tech.offyoucode.co.uk/signup.php?code=$link'>
+         share on facebook</button>";
+         echo "<button class='btn btn-primary' data-sharer='email'
+         data-width='800' data-height='600' data-title='share on email'
+         data-url='http://www.buzz4tech.offyoucode.co.uk/signup.php?code=$link'>
+         share on email</button>";
     $count = $row["count"];
     if($count>15){
         echo 'You are eligible for a good offer';
@@ -79,7 +92,7 @@
     <script>
         function copy(str){
             var el = document.createElement('textarea');
-            el.value = "localhost/signup.php?code="+str;
+            el.value = "localhost/referral/signup.php?code="+str;
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
@@ -94,6 +107,10 @@
    function edit(x){
        window.location="edit.php?id="+x;
    }
+
     </script>
- 
-    </html>
+     <body>
+    
+  
+  </body>
+</html>
